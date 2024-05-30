@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content%}
+  
+<div class="container py-5">
+  <div class="d-flex flex-wrap gap-5 justify-content-center:""">
+    {%for task in data%}
+        <div class="card" style="width:18rem;">
+          <div class="card-body" >
+            <h5 class="card-title">{{task.title}}</h5>
+            <p class="card-text">{{task.description | truncatechars:200}}</p>
+            <p class="card-text text-info">Date: {{task.date}}</p>
+            <div  class="card-text">
+              Category: 
+              <p class='d-felx flex-wrap mt-2'> 
+                {% for cat in task.category.all %}
+              <span class='btn btn-outline-info m-1'> {{cat.name}}</span>
+              {% endfor %}
+              </p>
+            </div>
+        
+            {% comment %} <div class='d-flex justify-content-between' >
+              <a href="{% url 'edittask' task.id %}" class="btn btn-primary">Edit</a>
+              <a href="{% url 'deletetask' task.id %}" class="btn btn-danger">Delete</a> 
+            </div> {% endcomment %}
+          </div>
+        </div>
+ 
+    {% endfor %}
+  </div>
+  </div>
+</div>
+{% endblock %}
