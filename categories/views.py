@@ -9,7 +9,6 @@ def add_category(request):
     if category_form.is_valid():
       # print(category_form.cleaned_data)
       category_form.save()
-      return redirect('add_task')
   else:
     category_form=forms.CategoryForm()
   return render(request,'add_category.html',{'form':category_form})
